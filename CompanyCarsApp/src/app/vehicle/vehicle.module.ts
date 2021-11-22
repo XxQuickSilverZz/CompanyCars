@@ -5,11 +5,15 @@ import { VehicleRoutingModule } from './vehicle-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateVehicleModalComponent } from './modals/create-vehicle/create-vehicle-modal.component';
 import { SharedModule } from '../shared.module';
+import { MonthYearDateFormatAdapterDirective } from './directives/month-year-date-format-adapter.directive';
+import { NormalDateFormatAdapterDirective } from './directives/normal-date-format-adapter.directive';
 
 @NgModule({
   declarations: [
     VehicleOverviewComponent,
-    CreateVehicleModalComponent
+    CreateVehicleModalComponent,
+    MonthYearDateFormatAdapterDirective,
+    NormalDateFormatAdapterDirective
   ],
   imports: [
     CommonModule,

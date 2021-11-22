@@ -18,3 +18,11 @@ button[disabled="true"] {
     background-color: silver !important;
     color: gray;
 }
+
+
+
+  // to display material overlay elements (dialog, datepicker, etc) over ngx-bootstrap modals
+  ::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
+  

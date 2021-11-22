@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -78,7 +79,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MatExpansionModule,
     MatSidenavModule,
     ModalModule,
-    MatFormFieldModule 
+    MatFormFieldModule
   ],
   providers: []
 })

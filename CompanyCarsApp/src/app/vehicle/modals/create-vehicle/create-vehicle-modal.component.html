@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h4 class="modal-title text-muted">
+        Neuanlage eines Fahrzeuges
+    </h4>
+    <button type="button" (click)="cancel()" class="close pull-right" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="container" [formGroup]="form">
+        <mat-form-field appearance="fill">
+            <mat-label>KFZ-Kennzeichen</mat-label>
+            <input matInput formControlName="kfzKennzeichen">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marke</mat-label>
+            <input matInput formControlName="marke">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Modell</mat-label>
+            <input matInput formControlName="modell">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Erstzulassung</mat-label>
+            <input matInput formControlName="erstzulassung">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name Fahrzeugfahrer</mat-label>
+            <input matInput formControlName="nameFahrzeugfahrer">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Kilometerstand</mat-label>
+            <input matInput formControlName="kmStand">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="example-form-field">
+            <mat-label>Datum Kilometerstand</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="datumKmStand">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Abbrechen</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Übernehmen</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button mat-raised-button color="primary" class="cancel" (click)="cancel()">Abbrechen</button>
+        <button mat-raised-button color="success" class="save" (click)="save()"
+            [disabled]="this.form.invalid">Speichern</button>
+    </div>

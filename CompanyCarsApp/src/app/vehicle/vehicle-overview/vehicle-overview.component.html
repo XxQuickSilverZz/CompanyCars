@@ -1,5 +1,5 @@
 
-    <button mat-stroked-button color="primary">Primary</button>
+<button mat-raised-button class="base-btn" (click)="openCreateVehicleModal()"><i class="bi bi-plus-circle"></i> Fahrzeug hinzufügen</button>
 <div class="row">
     <ng-container *ngFor="let vehicle of vehicles">
         <div class="card item">
@@ -9,7 +9,7 @@
                     <div class="col">
                         <div class="text-muted">
                             <div class="flex text-item">
-                                <i class="bi bi-geo-alt text-icon"></i>
+                                <i class="bi bi-diagram-2 text-icon"></i>
                                 <div>
                                   <span class="text-value">Marke</span>
                                   <div class="value">
@@ -22,7 +22,7 @@
                     <div class="col">
                         <div class="text-muted">
                             <div class="flex text-item">
-                                <i class="bi bi-geo-alt text-icon"></i>
+                                <i class="bi bi-diagram-3 text-icon"></i>
                                 <div>
                                   <span class="text-value">Modell</span>
                                   <div class="value">

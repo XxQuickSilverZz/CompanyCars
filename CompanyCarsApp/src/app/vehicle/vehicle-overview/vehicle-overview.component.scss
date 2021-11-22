@@ -24,3 +24,14 @@
     justify-content: center;
     color: hsl(198, 100%, 45%);
 }
+
+.base-btn{
+  background: #00648f;
+  color: white;
+  margin-left: -8px;
+  margin-bottom: 15px;
+  i{
+    font-size: 18px;
+    vertical-align: baseline;
+  }
+}

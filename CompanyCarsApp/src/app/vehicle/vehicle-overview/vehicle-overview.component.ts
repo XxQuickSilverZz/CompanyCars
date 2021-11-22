@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { VehicleModel } from '../models/vehicle';
+import { VehicleModel } from '../models/vehicle-model';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { CreateVehicleModalComponent } from '../modals/create-vehicle/create-vehicle-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-overview',
@@ -11,7 +14,9 @@ export class VehicleOverviewComponent implements OnInit {
 
   public vehicles: VehicleModel[] = [];
 
-  constructor() { }
+  constructor(
+    private readonly modalService: BsModalService,
+    private readonly toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.vehicles = [
@@ -57,6 +62,20 @@ export class VehicleOverviewComponent implements OnInit {
   public formatDate(date: Date){
     return moment(date).format('DD.MM.yyyy')
 
+  }
+
+  public openCreateVehicleModal(){
+    let modal = this.modalService.show(CreateVehicleModalComponent);
+
+    modal.content?.onClose.subscribe(async saved => {
+      if(saved){
+        let form = <VehicleModel>modal.content?.form.value;
+        console.log(form)
+
+        this.vehicles.unshift(form);
+        this.toastrService.success('Das Fahrzeug wurde zum Bestand hinzugefügt.')
+      }
+    });
   }
 
 }

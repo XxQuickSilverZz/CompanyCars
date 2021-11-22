@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.save {
+    background-color: #19b819 !important;
+    color: white;
+}
+
+.cancel {
+    background-color: #b90f0f !important;
+    color: white;
+}
+
+button[disabled="true"] {
+    background-color: silver !important;
+    color: gray;
+}

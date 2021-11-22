@@ -7,6 +7,8 @@ import { CreateVehicleModalComponent } from './modals/create-vehicle/create-vehi
 import { SharedModule } from '../shared.module';
 import { MonthYearDateFormatAdapterDirective } from './directives/month-year-date-format-adapter.directive';
 import { NormalDateFormatAdapterDirective } from './directives/normal-date-format-adapter.directive';
+import { reducer, vehicleFeatureKey } from './store/vehicle/store/reducer/vehicle.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { NormalDateFormatAdapterDirective } from './directives/normal-date-forma
     CommonModule,
     VehicleRoutingModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature(vehicleFeatureKey, reducer),
   ]
 })
 export class VehicleModule { }

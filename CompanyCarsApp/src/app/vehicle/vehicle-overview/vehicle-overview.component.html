@@ -1,10 +1,10 @@
 
 <button mat-raised-button class="base-btn" (click)="openCreateVehicleModal()"><i class="bi bi-plus-circle"></i> Fahrzeug hinzufügen</button>
 <div class="row">
-    <ng-container *ngFor="let vehicle of vehicles">
+    <ng-container *ngFor="let vehicle of vehicles$ | async">
         <div class="card item">
             <div class="card-body">
-                <h5 class="card-title license-plate" title="{{vehicle.kfzKennzeichen}}">{{vehicle.kfzKennzeichen}}</h5>
+                <h4 class="card-title license-plate" title="{{vehicle.kfzKennzeichen}}">{{vehicle.kfzKennzeichen}}</h4>
                 <div class="row">
                     <div class="col">
                         <div class="text-muted">

@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { VehicleModel } from '../models/vehicle-model';
+import { Vehicle } from '../models/vehicle-model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { CreateVehicleModalComponent } from '../modals/create-vehicle/create-vehicle-modal.component';
 import { ToastrService } from 'ngx-toastr';
+import { VehicleState } from '../store/vehicle/store/reducer/vehicle.reducer';
+import { select, Store } from '@ngrx/store';
+import { addVehicle } from '../store/vehicle/store/action/vehicle.actions';
+import { selectVehicles } from '../store/vehicle/store/selector/vehicle.selectors';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-vehicle-overview',
@@ -12,62 +17,39 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VehicleOverviewComponent implements OnInit {
 
-  public vehicles: VehicleModel[] = [];
+  public vehicles$: Observable<Vehicle[]> = of([]);
 
   constructor(
     private readonly modalService: BsModalService,
-    private readonly toastrService: ToastrService) { }
-
-  ngOnInit(): void {
-    this.vehicles = [
-      {
-        marke: 'Volkswagen',
-        modell: 'Golf 6',
-        erstzulassung : new Date(2011,5),
-        nameFahrzeugfahrer: 'Jamez Fatout',
-        kfzKennzeichen: 'GAP-JF-18',
-        kmStand: 249000,
-        datumKmStand: new Date()
-      },
-      {
-        marke: 'Mercedes',
-        modell: 'C 200',
-        erstzulassung : new Date(1992,2),
-        nameFahrzeugfahrer: 'Robert Müller',
-        kfzKennzeichen: 'M-U-44',
-        kmStand: 71029,
-        datumKmStand: new Date(2021,3,1)
-      },
-      {
-        marke: 'BMW',
-        modell: '320 d',
-        erstzulassung : new Date(2005,11),
-        nameFahrzeugfahrer: 'Kevin Jäger',
-        kfzKennzeichen: 'HAL-LO-3',
-        kmStand: 412300,
-        datumKmStand: new Date()
-      }
-    ];
+    private readonly toastrService: ToastrService,
+    private store: Store<VehicleState>) {
+      
+    this.vehicles$ = this.store.pipe(select(selectVehicles));
   }
 
-  public formatEZDate(date: Date){
+  ngOnInit(): void {
+  }
+
+  public formatEZDate(date: Date) {
     return moment(date).format('MM/YYYY')
   }
 
-  public formatDatumKmStand(date: Date){
+  public formatDatumKmStand(date: Date) {
     return moment(date).format('DD.MM.yyyy')
   }
 
-  public openCreateVehicleModal(){
+  public openCreateVehicleModal() {
     let modal = this.modalService.show(CreateVehicleModalComponent);
 
     modal.content?.onClose.subscribe(async saved => {
-      if(saved){
-        let form = <VehicleModel>modal.content?.form.value;
-        console.log(form)
-
-        this.vehicles.unshift(form);
-        this.toastrService.success('Das Fahrzeug wurde zum Bestand hinzugefügt.')
+      if (saved) {
+        try {
+          let vehicle = <Vehicle>modal.content?.form.value;
+          this.store.dispatch(addVehicle(vehicle));
+          this.toastrService.success('Das Fahrzeug wurde zum Bestand hinzugefügt.')
+        } catch (error) {
+          this.toastrService.error('Das Fahrzeug konnte nicht zum Bestand hinzugefügt werden. Bitte wiederholen Sie den Vorgang!')
+        }
       }
     });
   }

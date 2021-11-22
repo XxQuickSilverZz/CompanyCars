@@ -10,6 +10,7 @@ import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } f
 import { ToastrModule } from 'ngx-toastr';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter,  MAT_MOMENT_DATE_FORMATS} from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       enableHtml: true,
       closeButton: true,
       maxOpened: 10,
-    })
+    }),
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   exports: [
   

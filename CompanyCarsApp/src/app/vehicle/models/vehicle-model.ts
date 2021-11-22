@@ -1,4 +1,4 @@
-export interface VehicleModel{
+export interface Vehicle{
     kfzKennzeichen: string;
     marke: string;
     modell: string;

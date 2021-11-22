@@ -1,0 +1,98 @@
+
+    <button mat-stroked-button color="primary">Primary</button>
+<div class="row">
+    <ng-container *ngFor="let vehicle of vehicles">
+        <div class="card item">
+            <div class="card-body">
+                <h5 class="card-title license-plate" title="{{vehicle.kfzKennzeichen}}">{{vehicle.kfzKennzeichen}}</h5>
+                <div class="row">
+                    <div class="col">
+                        <div class="text-muted">
+                            <div class="flex text-item">
+                                <i class="bi bi-geo-alt text-icon"></i>
+                                <div>
+                                  <span class="text-value">Marke</span>
+                                  <div class="value">
+                                    {{ vehicle.marke }}
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">
+                            <div class="flex text-item">
+                                <i class="bi bi-geo-alt text-icon"></i>
+                                <div>
+                                  <span class="text-value">Modell</span>
+                                  <div class="value">
+                                    {{ vehicle.modell }}
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="text-muted">
+                            <div class="flex text-item">
+                                <i class="bi bi-calendar2-week text-icon"></i>
+                                <div>
+                                  <span class="text-value">Erstzulassung</span>
+                                  <div class="value">
+                                    {{ vehicle.erstzulassung }}
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">
+                            <div class="flex text-item">
+                                <i class="bi bi-person text-icon"></i>
+                                <div>
+                                  <span class="text-value">Name Fahrzeugfahrer</span>
+                                  <div class="value">
+                                    {{ vehicle.nameFahrzeugfahrer }}
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    
+                    <div class="col">
+                        <div class="text-muted">
+                            <div class="flex text-item">
+                                <i class="bi bi-speedometer2 text-icon"></i>
+                                <div>
+                                  <span class="text-value">Kilometerstand</span>
+                                  <div class="value">
+                                    {{ vehicle.kmStand }} km
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">
+                            <div class="flex text-item">
+                                <i class="bi bi-calendar2-check text-icon"></i>
+                                <div>
+                                  <span class="text-value">Datum Kilometerstand</span>
+                                  <div class="value">
+                                    {{ formatDate(vehicle.datumKmStand) }}
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

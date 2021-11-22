@@ -1,0 +1,26 @@
+.item{
+  min-width: 470px;
+    max-width: 470px;
+    margin: 3px;
+}
+
+
+.text-item {
+  margin-bottom: 10px;
+}
+
+.text-value {
+  font-size: 16px;
+}
+
+.text-icon {
+  padding-top: 4px;
+  margin-right: 16px;
+  font-size: 24px;
+}
+
+.license-plate{
+  display: flex;
+    justify-content: center;
+    color: hsl(198, 100%, 45%);
+}

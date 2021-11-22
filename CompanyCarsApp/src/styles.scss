@@ -1,0 +1,42 @@
+
+// @import "~@angular/material/theming";
+// @import "~@ng-select/ng-select/themes/material.theme.css";
+.flex-container {
+    display: flex;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-center {
+    justify-content: center;
+  }
+  
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .flex-column {
+    flex-direction: column;
+  }
+  
+  .flex-row {
+    flex-direction: row;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
+  
+  .flex-right {
+    margin-left: auto !important;
+  }
+  
+  .flex-end {
+    justify-content: flex-end;
+  }
+  
+  .flex-column-reverse {
+    flex-direction: column-reverse;
+  }

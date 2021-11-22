@@ -23,7 +23,7 @@ export class VehicleOverviewComponent implements OnInit {
       {
         marke: 'Volkswagen',
         modell: 'Golf 6',
-        erstzulassung : '05/2011',
+        erstzulassung : new Date(2011,5),
         nameFahrzeugfahrer: 'Jamez Fatout',
         kfzKennzeichen: 'GAP-JF-18',
         kmStand: 249000,
@@ -32,7 +32,7 @@ export class VehicleOverviewComponent implements OnInit {
       {
         marke: 'Mercedes',
         modell: 'C 200',
-        erstzulassung : '02/1992',
+        erstzulassung : new Date(1992,2),
         nameFahrzeugfahrer: 'Robert Müller',
         kfzKennzeichen: 'M-U-44',
         kmStand: 71029,
@@ -41,16 +41,7 @@ export class VehicleOverviewComponent implements OnInit {
       {
         marke: 'BMW',
         modell: '320 d',
-        erstzulassung : '11/2005',
-        nameFahrzeugfahrer: 'Kevin Jäger',
-        kfzKennzeichen: 'HAL-LO-3',
-        kmStand: 412300,
-        datumKmStand: new Date()
-      },
-      {
-        marke: 'BMW',
-        modell: '320 d',
-        erstzulassung : '11/2005',
+        erstzulassung : new Date(2005,11),
         nameFahrzeugfahrer: 'Kevin Jäger',
         kfzKennzeichen: 'HAL-LO-3',
         kmStand: 412300,
@@ -59,9 +50,12 @@ export class VehicleOverviewComponent implements OnInit {
     ];
   }
 
-  public formatDate(date: Date){
-    return moment(date).format('DD.MM.yyyy')
+  public formatEZDate(date: Date){
+    return moment(date).format('MM/YYYY')
+  }
 
+  public formatDatumKmStand(date: Date){
+    return moment(date).format('DD.MM.yyyy')
   }
 
   public openCreateVehicleModal(){

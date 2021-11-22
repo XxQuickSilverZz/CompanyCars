@@ -42,7 +42,7 @@
                                 <div>
                                   <span class="text-value">Erstzulassung</span>
                                   <div class="value">
-                                    {{ vehicle.erstzulassung }}
+                                    {{ formatEZDate(vehicle.erstzulassung) }}
                                   </div>
                                 </div>
                               </div>
@@ -85,7 +85,7 @@
                                 <div>
                                   <span class="text-value">Datum Kilometerstand</span>
                                   <div class="value">
-                                    {{ formatDate(vehicle.datumKmStand) }}
+                                    {{ formatDatumKmStand(vehicle.datumKmStand) }}
                                   </div>
                                 </div>
                               </div>

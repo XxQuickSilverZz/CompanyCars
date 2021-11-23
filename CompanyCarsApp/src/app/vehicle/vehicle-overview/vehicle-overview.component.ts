@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { Vehicle } from '../models/vehicle-model';
+import { IVehicle } from '../models/vehicle-model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { CreateVehicleModalComponent } from '../modals/create-vehicle/create-vehicle-modal.component';
 import { ToastrService } from 'ngx-toastr';
@@ -17,17 +17,16 @@ import { Observable, of } from 'rxjs';
 })
 export class VehicleOverviewComponent implements OnInit {
 
-  public vehicles$: Observable<Vehicle[]> = of([]);
+  public vehicles$: Observable<IVehicle[]> = of([]);
 
   constructor(
     private readonly modalService: BsModalService,
     private readonly toastrService: ToastrService,
-    private store: Store<IVehicleState>) {
-      
-    this.vehicles$ = this.store.pipe(select(selectVehicles));
+    public store: Store<IVehicleState>) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {  
+    this.loadVehiclesFromStore();
   }
 
   public formatEZDate(date: Date) {
@@ -38,21 +37,32 @@ export class VehicleOverviewComponent implements OnInit {
     return moment(date).format('DD.MM.yyyy')
   }
 
-  public openCreateVehicleModal() {
+  public openCreateVehicleModal(): Partial<IVehicle> {
     let modal = this.modalService.show(CreateVehicleModalComponent);
 
+    let vehicle = {};
     modal.content?.onClose.subscribe(async saved => {
       if (saved) {
         try {
-          let vehicle = <Vehicle>modal.content?.form.value;
-          this.store.dispatch(addVehicle(vehicle));
-          this.vehicles$ = this.store.pipe(select(selectVehicles));
-          this.toastrService.success('Das Fahrzeug wurde zum Bestand hinzugefügt.')
+          let newVehicle = <IVehicle>modal.content?.form?.value;
+          if(newVehicle){
+            this.store.dispatch(addVehicle(newVehicle));
+            this.loadVehiclesFromStore();
+            this.toastrService.success('Das Fahrzeug wurde zum Bestand hinzugefügt.');
+            vehicle = newVehicle;
+          }
         } catch (error) {
-          this.toastrService.error('Das Fahrzeug konnte nicht zum Bestand hinzugefügt werden. Bitte wiederholen Sie den Vorgang!')
+          this.toastrService.error('Das Fahrzeug konnte nicht zum Bestand hinzugefügt werden. Bitte wiederholen Sie den Vorgang!');
+          console.error(error);
+          vehicle = {};
         }
       }
     });
+
+    return vehicle;
   }
 
+  private loadVehiclesFromStore() {
+    this.vehicles$ = this.store.pipe(select(selectVehicles));
+  }
 }

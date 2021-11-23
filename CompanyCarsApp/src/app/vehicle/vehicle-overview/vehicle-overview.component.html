@@ -1,5 +1,8 @@
+<div>
+  <button mat-raised-button class="base-btn back-btn" [routerLink]="['/', 'dashboard']"><i class="bi bi-arrow-left"></i>Zurück zum Dashboard</button>
+  <button mat-raised-button class="base-btn" (click)="openCreateVehicleModal()"><i class="bi bi-plus-circle"></i> Fahrzeug hinzufügen</button>
+</div>
 
-<button mat-raised-button class="base-btn" (click)="openCreateVehicleModal()"><i class="bi bi-plus-circle"></i> Fahrzeug hinzufügen</button>
 <div class="row">
     <ng-container *ngFor="let vehicle of vehicles$ | async">
         <div class="card item">

@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ToastrModule } from 'ngx-toastr';
@@ -13,6 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { StoreModule, ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { IVehicleState, vehicleFeatureKey } from './vehicle/store/vehicle/store/reducer/vehicle.reducer';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { RouterModule } from '@angular/router';
 
 const reducers: ActionReducerMap<IVehicleState> = { 
   vehicles: <any>[]
@@ -26,6 +27,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     ReactiveFormsModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    RouterModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       progressBar: true,
@@ -45,8 +48,6 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     StoreModule.forRoot(reducers, { metaReducers }),
   ],
   exports: [
-
-    MatButtonModule,
   ],
   providers: [
     {

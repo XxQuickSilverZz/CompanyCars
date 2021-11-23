@@ -1,7 +1,6 @@
 import { Directive } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 
-
 const MY_FORMATS = {
   parse: {
       dateInput: 'DD.MM.YYYY',
@@ -13,7 +12,6 @@ const MY_FORMATS = {
       monthYearA11yLabel: 'MMMM YYYY',
   },
 };
-
 
 @Directive({
   selector: '[normalDateFormatAdapter]',

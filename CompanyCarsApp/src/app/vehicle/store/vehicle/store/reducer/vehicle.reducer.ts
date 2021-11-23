@@ -1,14 +1,14 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Vehicle } from 'src/app/vehicle/models/vehicle-model';
+import { IVehicle } from 'src/app/vehicle/models/vehicle-model';
 import * as VehicleActions from '../action/vehicle.actions';
 
 export const vehicleFeatureKey = 'vehicle';
 
 export interface IVehicleState {
-  vehicles: Vehicle[]
+  vehicles: IVehicle[]
 }
 
-export const initialState: IVehicleState = {
+export const initialVehicleState: IVehicleState = {
   vehicles: [
     {
       marke: 'Volkswagen',
@@ -41,7 +41,7 @@ export const initialState: IVehicleState = {
 };
 
 export const vehicleReducer = createReducer(
-  initialState,
+  initialVehicleState,
   on(VehicleActions.addVehicle,
     (state: IVehicleState, { vehicle }) =>
     ({

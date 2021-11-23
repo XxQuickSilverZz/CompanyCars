@@ -4,11 +4,11 @@ import * as VehicleActions from '../action/vehicle.actions';
 
 export const vehicleFeatureKey = 'vehicle';
 
-export interface VehicleState {
+export interface IVehicleState {
   vehicles: Vehicle[]
 }
 
-export const initialState: VehicleState = {
+export const initialState: IVehicleState = {
   vehicles: [
     {
       marke: 'Volkswagen',
@@ -43,14 +43,14 @@ export const initialState: VehicleState = {
 export const vehicleReducer = createReducer(
   initialState,
   on(VehicleActions.addVehicle,
-    (state: VehicleState, { customer }) =>
+    (state: IVehicleState, { vehicle }) =>
     ({
       ...state,
-      customers: [customer, ...state.vehicles]
+      vehicles: [vehicle, ...state.vehicles]
     }))
 );
 
 
-export function reducer(state: VehicleState | undefined, action: Action): any {
+export function reducer(state: IVehicleState | undefined, action: Action): any {
   return vehicleReducer(state, action);
 }

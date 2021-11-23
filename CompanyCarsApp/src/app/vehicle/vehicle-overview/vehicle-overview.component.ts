@@ -4,7 +4,7 @@ import { Vehicle } from '../models/vehicle-model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { CreateVehicleModalComponent } from '../modals/create-vehicle/create-vehicle-modal.component';
 import { ToastrService } from 'ngx-toastr';
-import { VehicleState } from '../store/vehicle/store/reducer/vehicle.reducer';
+import { IVehicleState } from '../store/vehicle/store/reducer/vehicle.reducer';
 import { select, Store } from '@ngrx/store';
 import { addVehicle } from '../store/vehicle/store/action/vehicle.actions';
 import { selectVehicles } from '../store/vehicle/store/selector/vehicle.selectors';
@@ -22,7 +22,7 @@ export class VehicleOverviewComponent implements OnInit {
   constructor(
     private readonly modalService: BsModalService,
     private readonly toastrService: ToastrService,
-    private store: Store<VehicleState>) {
+    private store: Store<IVehicleState>) {
       
     this.vehicles$ = this.store.pipe(select(selectVehicles));
   }
@@ -46,6 +46,7 @@ export class VehicleOverviewComponent implements OnInit {
         try {
           let vehicle = <Vehicle>modal.content?.form.value;
           this.store.dispatch(addVehicle(vehicle));
+          this.vehicles$ = this.store.pipe(select(selectVehicles));
           this.toastrService.success('Das Fahrzeug wurde zum Bestand hinzugefügt.')
         } catch (error) {
           this.toastrService.error('Das Fahrzeug konnte nicht zum Bestand hinzugefügt werden. Bitte wiederholen Sie den Vorgang!')
